@@ -1,6 +1,5 @@
 package com.example.myapp;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,19 +20,17 @@ public class CommonWebHandlers {
 
     @WebPost("/exportChart")
     public WebResponse exportChart(@WebParam("jsFileName") String jsFileName) {
-        File scriptFile = new File("resources/smr.js");
-        System.out.println("-----------jsFileName:"+jsFileName);
-        
         List<String> paramList = new LinkedList<String>();
         paramList.add("/usr/local/bin/phantomjs");
-        paramList.add(scriptFile.getAbsolutePath());
+        paramList.add(jsFileName);
 
         String[] parameters = paramList.toArray(new String[paramList.size()]);
 
         try {
-           Runtime.getRuntime().exec(parameters);
+            System.out.println("-----execute phantomjs-----file:"+jsFileName);
+            Runtime.getRuntime().exec(parameters);
         } catch (Exception e) {
-            throw new IllegalStateException("Cannot execute script " + scriptFile, e);
+            throw new IllegalStateException("Cannot execute script " + jsFileName, e);
         }
     	
     	return WebResponse.success(jsFileName);

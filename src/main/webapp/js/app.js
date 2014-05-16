@@ -22,23 +22,13 @@ var app = app || {};
 			  data : params,
 			  dataType : "json"
 		  }).success(function(data) {
-			  if(app.isValidationException(data)){
-				  dfd.reject(data);
-			  }else{
-				  dfd.resolve(data);
-			  }
+			dfd.resolve(data);
 		  }).fail(function(jxhr, arg2) {
 			try {
 				if (jxhr.responseText) {
-					  //if user session time out, return to login page
-					  if(jxhr.responseText.indexOf("AUTH_FAILED") > -1){
-						  console.log(jxhr);
-						  window.location = app.indexPage;
-					  }else{
-						  console.log(" WARNING: json not well formatted, falling back to JS eval");
-						  var data = eval("(" + jxhr.responseText + ")");
-						  dfd.resolve(data);
-					  }
+					console.log(" WARNING: json not well formatted, falling back to JS eval");
+					var data = eval("(" + jxhr.responseText + ")");
+					dfd.resolve(data);
 				} else {
 					throw " EXCEPTION: Cannot get content for " + url;
 				}

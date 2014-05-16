@@ -27,19 +27,27 @@
   <body>
   	<div id="bodyPage">
   		<div id="content">
-  			<label>Report Type: Batch</label>
-  			<label>Section: Overview</label>
-  			<label>View: Summary view</label>
-  			<button id="exportChartBtn" class="btn btn-primary">Export Chart</button>
+  			<div class="part">
+	  			<label>Report Type: Batch</label>
+	  			<label>Section: Overview</label>
+	  			<label>View: Summary view</label>
+	  			<button class="btn btn-primary exportChartBtn" data-value="batch-overview-summary">Export Chart</button>
+			</div>
+			<div class="part">
+	  			<label>Report Type: Batch</label>
+	  			<label>Section: Overview</label>
+	  			<label>View: Summary - Only Chart</label>
+	  			<button class="btn btn-primary exportChartBtn" data-value="batch-overview-summary-chart">Export Chart</button>
+  			</div>
   		</div>
   	</div>
   	<script type="text/javascript">
 		$(function(){
-			$("#exportChartBtn").click(function(){
-				console.log("---click----")
-				var jsFileName = "resources/smr.js";
+			$(".exportChartBtn").click(function(){
+				var chartVal = $(this).attr("data-value");
+				var jsFileName = "resources/" + chartVal + ".js";
 				app.ajaxRequest(app.host + "/exportChart", {jsFileName: jsFileName}, "POST").pipe(function(val){
-					console.log("----------")
+					console.log(val)
 					return val.result;
 				});
 			});
