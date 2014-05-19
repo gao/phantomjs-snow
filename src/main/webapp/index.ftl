@@ -39,6 +39,15 @@
 	  			<label>View: Summary - Only Chart</label>
 	  			<button class="btn btn-primary exportChartBtn" data-value="batch-overview-summary-chart">Export Chart</button>
   			</div>
+  			<div class="part">
+	  			<label class="status success">The image of report generate success!</label>
+	  			<label class="status failure">The image of report generate failure!</label>
+  			</div>
+  			<div class="report-data-loading">
+	          	<div>
+	          		<span class="loading-data-gif">&nbsp;</span><span>Loading data...</span>
+			  	</div>
+		   </div>
   		</div>
   	</div>
   	<script type="text/javascript">
@@ -46,9 +55,17 @@
 			$(".exportChartBtn").click(function(){
 				var chartVal = $(this).attr("data-value");
 				var jsFileName = "resources/" + chartVal + ".js";
+				var $reportDataLoading = $(".report-data-loading");
+				$reportDataLoading.show();
 				app.ajaxRequest(app.host + "/exportChart", {jsFileName: jsFileName}, "POST").pipe(function(val){
-					console.log(val)
-					return val.result;
+					if(val.result == "SUCCESS"){
+						$(".success").show();
+						$(".failure").hide();
+					}else{
+						$(".success").hide();
+						$(".failure").show();
+					}
+					$reportDataLoading.hide();
 				});
 			});
 		});

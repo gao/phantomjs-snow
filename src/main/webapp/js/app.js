@@ -4,17 +4,9 @@ var app = app || {};
 	var host = contextPath;
 	app.host = host;
 	
-	app.render = function(templateName,data){
-		data = data || {};
-		var idPreFix = "#";
-		var $e = $(Handlebars.compile($(idPreFix+templateName).html())(data));
-		return $e;
-	}
-	
 	app.ajaxRequest = function(url, params, method) {
 		var dfd = $.Deferred();
 		params = params || {};
-		console.log(url, params, method)
 		jQuery.ajax({
 			  type : method ? method : "GET",
 			  url : url,

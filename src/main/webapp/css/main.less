@@ -42,4 +42,48 @@ html,body{
 	margin-top: 30px;
 }
 
+#content .part .status{
+	display:none;
+}
+
+#content .report-data-loading{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index:1000;
+	width:100%;
+	height:100%;
+	text-align: center;
+	display: none;
+}
+
+#content .report-data-loading div{
+	margin:0 auto;
+	width:200px;
+	height:200px;
+	.border-radius(5px);
+    margin-top: 80px;
+    background: #333;
+    opacity:0.2;
+	filter:alpha(opacity=20);
+	line-height: 200px;
+	overflow: hidden;
+}
+
+#content .report-data-loading div span{
+	margin-left:5px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+	margin: 80px 0 0 8px;
+	*margin:0 0 0 8px;
+}
+
+#content .report-data-loading div span.loading-data-gif{
+	display: inline-block;
+	width: 30px;
+   	height: 30px;
+    background-image: url("images/loadingData.gif");
+	background-repeat: no-repeat;
+}
 
