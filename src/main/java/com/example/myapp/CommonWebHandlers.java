@@ -9,6 +9,7 @@ import com.britesnow.snow.web.param.annotation.WebParam;
 import com.britesnow.snow.web.rest.annotation.WebPost;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 
 
 @Singleton
@@ -19,11 +20,15 @@ public class CommonWebHandlers {
     @Inject
     public CommonWebHandlers() {
     }
+    
+    @Inject
+    @Named("myApp.phantomjsPath")
+    private String phantomjsPath; 
 
     @WebPost("/exportChart")
     public WebResponse exportChart(@WebParam("jsFileName") String jsFileName) {
         List<String> paramList = new LinkedList<String>();
-        paramList.add("/usr/local/bin/phantomjs");
+        paramList.add(phantomjsPath);
         paramList.add(jsFileName);
 
         StringBuilder stringBuilder = null;
