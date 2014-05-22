@@ -46,6 +46,12 @@
 	  			<button class="btn btn-primary exportChartBtn" data-value="batch-overview-summary-all">Export Chart</button>
   			</div>
   			<div class="part">
+	  			<label>Report Type: Program</label>
+	  			<label>Section: Overview</label>
+	  			<label>View: Summary - All Content</label>
+	  			<button class="btn btn-primary exportChartBtn" data-value="program-overview-summary-all">Export Chart</button>
+  			</div>
+  			<div class="part">
 	  			<label class="status success">The image of report generate success!</label>
 	  			<label class="status failure">The image of report generate failure!</label>
   			</div>
