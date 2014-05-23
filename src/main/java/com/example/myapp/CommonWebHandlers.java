@@ -13,7 +13,6 @@ import com.britesnow.snow.web.param.annotation.WebParam;
 import com.britesnow.snow.web.rest.annotation.WebPost;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 
 
 @Singleton
@@ -24,7 +23,7 @@ public class CommonWebHandlers {
     @Inject
     public CommonWebHandlers() {
     }
-    /*
+    /* hide it for now
     @Inject
     @Named("myApp.phantomjsPath")
     private String phantomjsPath; 
