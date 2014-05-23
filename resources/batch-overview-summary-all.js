@@ -1,8 +1,10 @@
 var page = require('webpage').create();
+var system = require('system');
+var address = system.args[1];
 
 page.viewportSize = {width: 1300,height: 800};
 
-page.open('http://localhost:8081/', function() {
+page.open(address, function() {
 	page.includeJs('js/jquery.min.js');
 
     window.setTimeout(function (){

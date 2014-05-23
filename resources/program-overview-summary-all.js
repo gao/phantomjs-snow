@@ -1,8 +1,10 @@
 var page = require('webpage').create();
+var system = require('system');
+var address = system.args[1];
 
 page.viewportSize = { width: 1300, height: 800 };
 
-page.open('http://localhost:8081/', function(status) {
+page.open(address, function(status) {
 	if(status !== 'success') {
         console.log('Unable to access network');
     } else {

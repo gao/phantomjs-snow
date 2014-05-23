@@ -67,9 +67,10 @@
 			$(".exportChartBtn").click(function(){
 				var chartVal = $(this).attr("data-value");
 				var jsFileName = "resources/" + chartVal + ".js";
+				var url = "http://localhost:8081/";
 				var $reportDataLoading = $(".report-data-loading");
 				$reportDataLoading.show();
-				app.ajaxRequest(app.host + "/exportChart", {jsFileName: jsFileName}, "POST").pipe(function(val){
+				app.ajaxRequest(app.host + "/exportChart", {jsFileName: jsFileName, url: url}, "POST").pipe(function(val){
 					if(val.result == "SUCCESS"){
 						$(".success").show();
 						$(".failure").hide();

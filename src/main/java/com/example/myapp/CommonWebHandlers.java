@@ -82,7 +82,7 @@ public class CommonWebHandlers {
     }
 
     @WebPost("/exportChart")
-    public WebResponse exportChart(@WebParam("jsFileName") String jsFileName) {
+    public WebResponse exportChart(@WebParam("jsFileName") String jsFileName, @WebParam("url") String url) {
         File executable = getExecutableFile();
         String path =  executable.getAbsolutePath();
         
@@ -90,6 +90,7 @@ public class CommonWebHandlers {
         //paramList.add(phantomjsPath);
         paramList.add(path);
         paramList.add(jsFileName);
+        paramList.add(url);
 
         StringBuilder stringBuilder = null;
         String[] parameters = paramList.toArray(new String[paramList.size()]);
