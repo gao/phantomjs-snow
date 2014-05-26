@@ -28,29 +28,30 @@
   	<div id="bodyPage">
   		<div id="content">
   			<div class="part">
-	  			<label>Report Type: Batch</label>
-	  			<label>Section: Overview</label>
-	  			<label>View: Summary - All page</label>
+	  			<label>Report Type: Batch -> Section: Overview -> View: Summary -> All page </label>
 	  			<button class="btn btn-primary exportChartBtn" data-value="batch-overview-summary">Export Chart</button>
 			</div>
 			<div class="part">
-	  			<label>Report Type: Batch</label>
-	  			<label>Section: Overview</label>
-	  			<label>View: Summary - Only HighChart</label>
+	  			<label>Report Type: Batch -> Section: Overview -> View: Summary -> Only HighChart </label>
 	  			<button class="btn btn-primary exportChartBtn" data-value="batch-overview-summary-chart">Export Chart</button>
   			</div>
   			<div class="part">
-	  			<label>Report Type: Batch</label>
-	  			<label>Section: Overview</label>
-	  			<label>View: Summary - All Content</label>
+	  			<label>Report Type: Batch -> Section: Overview -> View: Summary -> All Content </label>
 	  			<button class="btn btn-primary exportChartBtn" data-value="batch-overview-summary-all">Export Chart</button>
   			</div>
   			<div class="part">
-	  			<label>Report Type: Program</label>
-	  			<label>Section: Overview</label>
-	  			<label>View: Summary - All Content</label>
+  				<label>Report Type: Program -> Section: Overview -> View: Summary -> All Content </label>
 	  			<button class="btn btn-primary exportChartBtn" data-value="program-overview-summary-all">Export Chart</button>
   			</div>
+  			<div class="part">
+  				<label>This select report type function only use one js file to export 3 different report image.</label>
+	  			<select id="reportTypeSelect">
+	  				<option value="BATCH" selected="true">Batch</option>
+					<option value="TRANSACTIONAL">Transactional</option>
+					<option value="PROGRAM">Program</option>
+				</select>
+				<button class="btn btn-primary exportChartBtn2" data-value="overview-summary-all">Export Chart</button>
+			</div>
   			<div class="part">
 	  			<label class="status success">The image of report generate success!</label>
 	  			<label class="status failure">The image of report generate failure!</label>
@@ -71,6 +72,26 @@
 				var $reportDataLoading = $(".report-data-loading");
 				$reportDataLoading.show();
 				app.ajaxRequest(app.host + "/exportChart", {jsFileName: jsFileName, url: url}, "POST").pipe(function(val){
+					if(val.result == "SUCCESS"){
+						$(".success").show();
+						$(".failure").hide();
+					}else{
+						$(".success").hide();
+						$(".failure").show();
+					}
+					$reportDataLoading.hide();
+				});
+			});
+			
+			$(".exportChartBtn2").click(function(){
+				var chartVal = $(this).attr("data-value");
+				var jsFileName = "resources/" + chartVal + ".js";
+				var url = "http://localhost:8081/";
+				var reportType = $("#reportTypeSelect").val();
+				console.log("---reportType:"+reportType);
+				var $reportDataLoading = $(".report-data-loading");
+				$reportDataLoading.show();
+				app.ajaxRequest(app.host + "/exportChart", {jsFileName: jsFileName, url: url, reportType: reportType}, "POST").pipe(function(val){
 					if(val.result == "SUCCESS"){
 						$(".success").show();
 						$(".failure").hide();
