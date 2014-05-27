@@ -91,7 +91,9 @@ public class CommonWebHandlers {
         paramList.add(path);
         paramList.add(jsFileName);
         paramList.add(url);
-        paramList.add(reportType);
+        if(reportType != null){
+            paramList.add(reportType);
+        }
 
         StringBuilder stringBuilder = null;
         String[] parameters = paramList.toArray(new String[paramList.size()]);
